@@ -10,7 +10,7 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist mamadali/yii2-speed-test "*"
+composer require mamadali/yii2-speed-test "*"
 ```
 
 or add
@@ -20,12 +20,30 @@ or add
 ```
 
 to the require section of your `composer.json` file.
+and run this command
+
+```
+composer update
+```
 
 
 Usage
 -----
+First add this code to config file
+```
+    'modules' => [
+        ...
+    	'speed-test' => [
+    		'class' => 'mamadali\speedtest\Module',
+		],
+        ...
+    ]
+```
 
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-<?= \mamadali\speedtest\AutoloadExample::widget(); ?>```
+<?= \mamadali\speedtest\SpeedTestWidget::widget([
+    	'title' => 'Internet speed test',
+    ]) ?>
+```
