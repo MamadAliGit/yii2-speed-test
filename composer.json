@@ -1,0 +1,22 @@
+{
+    "name": "mamadali/yii2-speed-test",
+    "description": "Test Internet conection Widget",
+    "type": "yii2-extension",
+    "keywords": ["speed-test","internet speed test yii2","yii2 speed test"],
+    "license": "LGPL-3.0+",
+    "authors": [
+        {
+            "name": "MamadAliGit",
+            "email": "mhmd.ali.shabani@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0",
+        "guzzlehttp/guzzle": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "mamadali\\speedtest\\": ""
+        }
+    }
+}
