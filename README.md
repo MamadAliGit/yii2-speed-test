@@ -40,6 +40,11 @@ First add this code to config file
     ]
 ```
 
+And run this command
+```
+php yii migrate/up --migrationPath=@vendor/mamadali/yii2-speed-test/migrations
+```
+
 Once the extension is installed, simply use it in your code by  :
 
 ```php
