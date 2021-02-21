@@ -1,6 +1,7 @@
 Yii2 Internet Speed Test
 ========================
 Test Internet conection Widget
+[php source code](https://github.com/librespeed/speedtest)
 
 Installation
 ------------
