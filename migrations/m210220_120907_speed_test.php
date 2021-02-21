@@ -28,6 +28,8 @@ class m210220_120907_speed_test extends Migration
 			'jitter' => $this->string()->null(),
 			'log' => $this->string()->null(),
 			'creator_id' => $this->integer()->null(),
+			'ispinfo' => $this->string()->null(),
+			'extra' => $this->string()->null(),
 		], $tableOptions);
 	}
 }

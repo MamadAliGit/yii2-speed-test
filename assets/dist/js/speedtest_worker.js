@@ -190,53 +190,53 @@ this.addEventListener("message", function(e) {
 			}
 			switch (settings.test_order.charAt(test_pointer)) {
 				case "I":
-					{
-						test_pointer++;
-						if (iRun) {
-							runNextTest();
-							return;
-						} else iRun = true;
-						getIp(runNextTest);
-					}
+				{
+					test_pointer++;
+					if (iRun) {
+						runNextTest();
+						return;
+					} else iRun = true;
+					getIp(runNextTest);
+				}
 					break;
 				case "D":
-					{
-						test_pointer++;
-						if (dRun) {
-							runNextTest();
-							return;
-						} else dRun = true;
-						testState = 1;
-						dlTest(runNextTest);
-					}
+				{
+					test_pointer++;
+					if (dRun) {
+						runNextTest();
+						return;
+					} else dRun = true;
+					testState = 1;
+					dlTest(runNextTest);
+				}
 					break;
 				case "U":
-					{
-						test_pointer++;
-						if (uRun) {
-							runNextTest();
-							return;
-						} else uRun = true;
-						testState = 3;
-						ulTest(runNextTest);
-					}
+				{
+					test_pointer++;
+					if (uRun) {
+						runNextTest();
+						return;
+					} else uRun = true;
+					testState = 3;
+					ulTest(runNextTest);
+				}
 					break;
 				case "P":
-					{
-						test_pointer++;
-						if (pRun) {
-							runNextTest();
-							return;
-						} else pRun = true;
-						testState = 2;
-						pingTest(runNextTest);
-					}
+				{
+					test_pointer++;
+					if (pRun) {
+						runNextTest();
+						return;
+					} else pRun = true;
+					testState = 2;
+					pingTest(runNextTest);
+				}
 					break;
 				case "_":
-					{
-						test_pointer++;
-						setTimeout(runNextTest, 1000);
-					}
+				{
+					test_pointer++;
+					setTimeout(runNextTest, 1000);
+				}
 					break;
 				default:
 					test_pointer++;
@@ -246,7 +246,7 @@ this.addEventListener("message", function(e) {
 	}
 	if (params[0] === "abort") {
 		// abort command
-        if (testState >= 4) return;
+		if (testState >= 4) return;
 		tlog("manually aborted");
 		clearRequests(); // stop all xhr activity
 		runNextTest = null;
@@ -257,7 +257,7 @@ this.addEventListener("message", function(e) {
 		ulStatus = "";
 		pingStatus = "";
 		jitterStatus = "";
-        clientIp = "";
+		clientIp = "";
 		dlProgress = 0;
 		ulProgress = 0;
 		pingProgress = 0;
@@ -290,7 +290,7 @@ function clearRequests() {
 }
 // gets client's IP using url_getIp, then calls the done function
 var ipCalled = false; // used to prevent multiple accidental calls to getIp
-var ispInfo = ""; //used for telemetry
+var ispInfo = ''; //used for telemetry
 function getIp(done) {
 	tverb("getIp");
 	if (ipCalled) return;
@@ -305,7 +305,7 @@ function getIp(done) {
 			ispInfo = data.rawIspInfo;
 		} catch (e) {
 			clientIp = xhr.responseText;
-			ispInfo = "";
+			ispInfo = '';
 		}
 		done();
 	};
@@ -702,13 +702,11 @@ function sendTelemetry(done) {
 		done(null);
 	};
 	xhr.open("POST", settings.url_telemetry + url_sep(settings.url_telemetry) + (settings.mpot ? "cors=true&" : "") + "r=" + Math.random(), true);
-	var telemetryIspInfo = {
-		processedString: clientIp,
-		rawIspInfo: typeof ispInfo === "object" ? ispInfo : ""
-	};
+	var telemetryIspInfo = ispInfo.toString();
+	;
 	try {
 		var fd = new FormData();
-		fd.append("ispinfo", JSON.stringify(telemetryIspInfo));
+		fd.append("ispinfo", telemetryIspInfo);
 		fd.append("dl", dlStatus);
 		fd.append("ul", ulStatus);
 		fd.append("ping", pingStatus);
@@ -717,7 +715,7 @@ function sendTelemetry(done) {
 		fd.append("extra", settings.telemetry_extra);
 		xhr.send(fd);
 	} catch (ex) {
-		var postData = "extra=" + encodeURIComponent(settings.telemetry_extra) + "&ispinfo=" + encodeURIComponent(JSON.stringify(telemetryIspInfo)) + "&dl=" + encodeURIComponent(dlStatus) + "&ul=" + encodeURIComponent(ulStatus) + "&ping=" + encodeURIComponent(pingStatus) + "&jitter=" + encodeURIComponent(jitterStatus) + "&log=" + encodeURIComponent(settings.telemetry_level > 1 ? log : "");
+		var postData = "extra=" + encodeURIComponent(settings.telemetry_extra) + "&ispinfo=" + encodeURIComponent(telemetryIspInfo) + "&dl=" + encodeURIComponent(dlStatus) + "&ul=" + encodeURIComponent(ulStatus) + "&ping=" + encodeURIComponent(pingStatus) + "&jitter=" + encodeURIComponent(jitterStatus) + "&log=" + encodeURIComponent(settings.telemetry_level > 1 ? log : "");
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.send(postData);
 	}

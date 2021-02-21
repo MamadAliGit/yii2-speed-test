@@ -22,33 +22,23 @@ use Yii;
  */
 class SpeedTest extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%speed_test}}';
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public static function tableName()
+	{
+		return '{{%speed_test}}';
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
+	/**
+	 * @inheritdoc
+	 */
+	public function rules()
+	{
+		return [
 			[['id', 'timestamp', 'creator_id'], 'safe'],
-			[['ip', 'ua', 'lang', 'dl', 'ul', 'ping', 'jitter', 'log'], 'safe']
-        ];
-    }
-
-
-    /**
-     * @inheritdoc
-     * @return SpeedTestQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new SpeedTestQuery(get_called_class());
-    }
+			[['ip', 'ua', 'lang', 'dl', 'ul', 'ping', 'jitter', 'log', 'ispinfo', 'extra'], 'safe']
+		];
+	}
 
 }

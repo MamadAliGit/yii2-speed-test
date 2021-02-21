@@ -29,7 +29,7 @@ class GetIpController extends Controller
 
 		return [
 			'processedString' => $ip.' '.($localIpInfo ?: ''),
-			'rawIspInfo' => $this->getRawIpInfo($ip),
+			'rawIspInfo' => $localIpInfo == null ? $this->getRawIpInfo($ip) : '',
 		];
 	}
 
