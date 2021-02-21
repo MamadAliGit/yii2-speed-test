@@ -37,7 +37,8 @@ First add this code to config file
         ...
     	'speed-test' => [
     		'class' => 'mamadali\speedtest\Module',
-		],
+                'ipinfo_api_key' => // your api key from ipinfo.io,
+	],
         ...
     ]
 ```
